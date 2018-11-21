@@ -1,0 +1,189 @@
+.comment {
+  position: relative;
+
+  & + & {
+    @include spacing(margin-top, 2rem);
+  }
+
+  .edit-link {
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    opacity: 0;
+    transition: all .5s ease;
+  }
+
+  .children {
+    @include spacing(margin-left, 3rem);
+    @include spacing(margin-top, 2rem);
+
+    .children {
+      margin-left: 0;
+    }
+
+    @include below(lap) {
+      margin-left: 20px;
+    }
+  }
+}
+
+.comment-list {
+  @include spacing(margin, 4rem 0);
+
+  &, ul, ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+}
+
+.comment-list,
+.comment-respond {
+  @include spacing(margin-top, 3rem);
+}
+
+.comment-list + .comment-respond {
+  @include spacing(margin-top, 4rem);
+}
+
+.comment__wrapper {
+  display: flex;
+  align-items: flex-start;
+
+  &:hover {
+      .edit-link {
+        opacity: 1;
+      }
+  }
+}
+
+.comment__body {
+
+  > * + * {
+    @include spacing(padding-top, 0.5rem);
+  }
+}
+
+.comment__avatar {
+  margin-right: 20px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  overflow: hidden;
+
+  .avatar {
+    display: block;
+    margin: 0;
+  }
+
+  @include below(lap) {
+    max-width: 32px;
+  }
+}
+
+// Should be in Customizer under H6 field
+.comment__metadata,
+.comment-reply-title,
+.edit-link,
+.reply,
+.logged-in-as {
+  a {
+    @include leading-map($h6);
+    opacity: 0.6;
+
+    .u-underlined-links & {
+      text-decoration: none;
+    }
+  }
+}
+
+.comment__metadata {
+  display: inline-block;
+  margin-left: 5px;
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+}
+
+.reply a {
+  @include spacing(margin-bottom, 1rem);
+  display: block;
+}
+
+
+// Fade out the H6 Style
+.comment__metadata a,
+.reply.reply a {
+    transition: all .2s ease;
+
+    &:hover {
+      opacity: 0.8;
+    }
+}
+
+.c-comments-toggle__label {
+  @include btn;
+  display: block;
+  background-color: $theme-text-color;
+}
+
+.comment__content {
+  @include leading-map((
+    font-size: 15px,
+    line-height: (25/15)
+  ));
+}
+
+.comment-reply-title[class] {
+  @include spacing(margin-bottom, 0.5rem);
+}
+
+.comment-reply-title {
+  small {
+    font: inherit;
+
+  }
+}
+
+.pingback,
+.trackback {
+}
+
+.comment__author {
+  @include leading-map(map-merge($h4, (
+    spacing-bottom: false
+  )));
+
+  .u-underlined-links & a {
+    text-decoration: none;
+  }
+}
+
+.bypostauthor {
+  color: inherit;
+
+  .comment__author {
+    color: $theme-accent-color;
+  }
+}
+
+.says {
+  display: none;
+}
+
+
+@include below(lap) {
+  .c-author {
+    text-align: center;
+  }
+
+  .c-author__avatar {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+
